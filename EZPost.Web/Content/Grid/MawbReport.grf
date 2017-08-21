@@ -1,0 +1,429 @@
+﻿Object Report
+	Version='5.8.0.5'
+	Title='你的报表标题'
+	Object Font
+		Name='MS Shell Dlg'
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		Oriention=Landscape
+	End
+	Object DetailGrid
+		BorderStyles=[DrawTop]
+		ShowColLine=F
+		Object Recordset
+			Items Field
+				Item
+					Name='bag_number'
+				End
+				Item
+					Name='shipment_number'
+				End
+				Item
+					Name='SenderInfo'
+				End
+				Item
+					Name='ReceiverInfo'
+				End
+				Item
+					Name='weight'
+					Type=Float
+				End
+				Item
+					Name='declare_currency'
+				End
+				Item
+					Name='declare_value'
+					Type=Currency
+				End
+				Item
+					Name='rptHeader'
+				End
+				Item
+					Name='companyName'
+				End
+				Item
+					Name='mawb_number'
+				End
+				Item
+					Name='FlightRoute'
+				End
+				Item
+					Name='FlightInfo'
+				End
+				Item
+					Name='total_shipment'
+					Type=Integer
+				End
+				Item
+					Name='total_weight'
+					Type=Float
+				End
+				Item
+					Name='scontents'
+				End
+				Item
+					Name='BagHawb'
+				End
+				Item
+					Name='mainfest_number'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Column1'
+				Width=5.3975
+			End
+			Item
+				Name='Column3'
+				Width=5.21229
+			End
+			Item
+				Name='Column4'
+				Width=6.58813
+			End
+			Item
+				Name='Column5'
+				Width=1.40229
+			End
+			Item
+				Name='Column6'
+				Width=1.61396
+			End
+			Item
+				Name='Column7'
+				Width=1.61396
+			End
+			Item
+				Name='Column8'
+				Width=3.81
+			End
+		End
+		Object ColumnContent
+			Height=1.19063
+			Items ColumnContentCell
+				Item
+					Column='Column1'
+					Object Font
+						Name='Arial'
+						Size=82500,0
+						Weight=400
+					End
+					WordWrap=T
+					TextAlign=TopLeft
+					DataField='BagHawb'
+				End
+				Item
+					Column='Column3'
+					Object Font
+						Name='Arial'
+						Size=82500,0
+						Weight=400
+					End
+					CanGrow=T
+					WordWrap=T
+					TextAlign=TopLeft
+					DataField='SenderInfo'
+				End
+				Item
+					Column='Column4'
+					Object Font
+						Name='宋体'
+						Size=82500,0
+						Weight=400
+					End
+					CanGrow=T
+					WordWrap=T
+					DataField='ReceiverInfo'
+				End
+				Item
+					Column='Column5'
+					Object Font
+						Name='Arial'
+						Size=82500,0
+						Weight=400
+					End
+					DataField='weight'
+				End
+				Item
+					Column='Column6'
+					Object Font
+						Name='Arial'
+						Size=82500,0
+						Weight=400
+					End
+					DataField='declare_currency'
+				End
+				Item
+					Column='Column7'
+					Object Font
+						Name='Arial'
+						Size=82500,0
+						Weight=400
+					End
+					DataField='declare_value'
+				End
+				Item
+					Column='Column8'
+					Object Font
+						Name='宋体'
+						Size=82500,0
+						Weight=400
+					End
+					WordWrap=T
+					DataField='scontents'
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0.608542
+			RepeatStyle=OnPageColumn
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='Column1'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Bag# & Hawb#'
+				End
+				Item
+					GroupTitle=F
+					Column='Column3'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='ShipperName&Address'
+				End
+				Item
+					GroupTitle=F
+					Column='Column4'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='ConsigneeName&Address'
+				End
+				Item
+					GroupTitle=F
+					Column='Column5'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Wt(Kg)'
+				End
+				Item
+					GroupTitle=F
+					Column='Column6'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Declared'
+				End
+				Item
+					GroupTitle=F
+					Column='Column7'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Value'
+				End
+				Item
+					GroupTitle=F
+					Column='Column8'
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='ShipmentContents'
+				End
+			End
+		End
+	End
+	Items Section
+		Item
+			Type=PageHeader
+			Height=1.5875
+			Items Control
+				Item
+					Type=FieldBox
+					Name='FieldBox1'
+					Center=Horizontal
+					Left=10.16
+					Width=4.41854
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Size=142500,0
+						Bold=T
+					End
+					TextAlign=MiddleCenter
+					DataField='rptHeader'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox2'
+					Left=0.211667
+					Width=5.79438
+					Height=0.582083
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='companyName'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox3'
+					Left=0.211667
+					Top=0.9525
+					Width=5.79438
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='mawb_number'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox4'
+					Left=7.59354
+					Top=0.767292
+					Width=5.60917
+					Height=0.582083
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='FlightRoute'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox5'
+					Left=13.3879
+					Top=0.714375
+					Width=11.2183
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='FlightInfo'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox8'
+					Left=0.211667
+					Top=0.47625
+					Width=5.58271
+					Height=0.608542
+					Object Font
+						Name='宋体'
+						Weight=400
+					End
+					DataField='mainfest_number'
+				End
+			End
+		End
+		Item
+			Type=PageFooter
+			Height=1.5875
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox4'
+					Width=2.98979
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Total Shipments'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox6'
+					Left=2.98979
+					Width=2.80458
+					Height=0.582083
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='total_shipment'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox5'
+					Left=18.7325
+					Width=2.38125
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Total Weight'
+				End
+				Item
+					Type=FieldBox
+					Name='FieldBox7'
+					Left=21.1138
+					Width=2.80458
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					DataField='total_weight'
+				End
+				Item
+					Type=MemoBox
+					Name='MemoBox3'
+					Top=0.79375
+					Width=2.19604
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='PrintDate：'
+				End
+				Item
+					Type=MemoBox
+					Name='MemoBox2'
+					Anchor=[Top|Right]
+					Left=18.8119
+					Top=0.79375
+					Width=4.57729
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					Text='Page [#SystemVar(PageNumber)#] of [#SystemVar(PageCount)#]'
+				End
+				Item
+					Type=SystemVarBox
+					Name='SystemVarBox1'
+					Left=2.40771
+					Top=0.79375
+					Width=5.79438
+					Height=0.608542
+					Object Font
+						Name='Arial'
+						Weight=400
+					End
+					SystemVar=CurrentDateTime
+				End
+			End
+		End
+	End
+End

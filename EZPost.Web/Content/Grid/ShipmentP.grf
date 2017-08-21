@@ -1,0 +1,764 @@
+﻿Object Report
+	Version='5.8.0.5'
+	Title='你的报表标题'
+	Object Font
+		Name='MS Shell Dlg'
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		Size=256
+		Width=10
+		Height=13
+		LeftMargin=0.1
+		TopMargin=0.1
+		RightMargin=0.1
+		BottomMargin=0.1
+	End
+	Object DetailGrid
+		BorderStyles=[DrawBottom]
+		BorderPrintType=Content
+		GridLinePrintType=Content
+		Object Recordset
+			Items Field
+				Item
+					Name='receiver_name'
+				End
+				Item
+					Name='receiver_tel'
+				End
+				Item
+					Name='sender_name'
+				End
+				Item
+					Name='sender_phone'
+				End
+				Item
+					Name='sender_address1'
+				End
+				Item
+					Name='receiver_address1'
+				End
+				Item
+					Name='receiver_zip'
+				End
+				Item
+					Name='declare_value'
+				End
+				Item
+					Name='weight'
+				End
+				Item
+					Name='Item'
+				End
+				Item
+					Name='ItemUnitPrice'
+				End
+				Item
+					Name='ItemQuantity'
+				End
+				Item
+					Name='shipment_number'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Column1'
+				Width=6.00604
+			End
+			Item
+				Name='Column2'
+				Width=2.19604
+			End
+			Item
+				Name='Column3'
+				Width=1.77271
+			End
+		End
+		Object ColumnContent
+			Height=0.608542
+			Items ColumnContentCell
+				Item
+					Column='Column1'
+					FreeCell=T
+					Items Control
+						Item
+							Type=Line
+							Name='Line20'
+							Height=0.61
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox11'
+							Left=0.396875
+							Width=5.3975
+							Height=0.608542
+							ShrinkFontToFit=T
+							DataField='Item'
+						End
+					End
+				End
+				Item
+					Column='Column2'
+					FreeCell=T
+				End
+				Item
+					Column='Column3'
+					FreeCell=T
+					Items Control
+						Item
+							Type=Line
+							Name='Line21'
+							Left=9.82
+							Height=0.61
+						End
+						Item
+							Type=Line
+							Name='Line22'
+							Left=1.71979
+							Height=0.61
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0.608542
+			RepeatStyle=OnGroupHeader
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='Column1'
+					Object Font
+						Name='Microsoft Sans Serif'
+						Size=82500,0
+						Weight=400
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=Line
+							Name='Line23'
+							Height=0.61
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox18'
+							Left=0.0529167
+							Width=5.79438
+							Height=0.608542
+							TextAlign=MiddleCenter
+							Text='Quantity and detailed description of contents'
+						End
+					End
+				End
+				Item
+					GroupTitle=F
+					Column='Column2'
+					Object Font
+						Name='Microsoft Sans Serif'
+						Size=82500,0
+						Weight=400
+					End
+					TextAlign=MiddleCenter
+					Text='Weight(Kg)'
+				End
+				Item
+					GroupTitle=F
+					Column='Column3'
+					Object Font
+						Name='Microsoft Sans Serif'
+						Size=82500,0
+						Weight=400
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=Line
+							Name='Line24'
+							Left=1.71979
+							Height=0.61
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox17'
+							Width=1.5875
+							Height=0.608542
+							TextAlign=MiddleCenter
+							Text='Value'
+						End
+					End
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				ByFields='shipment_number'
+				Object GroupHeader
+					Height=6.58813
+					NewPage=Before
+					Items Control
+						Item
+							Type=Line
+							Name='Line7'
+							Top=2.24896
+							Width=9.92
+						End
+						Item
+							Type=Line
+							Name='Line6'
+							Left=5.45
+							Top=0.79375
+							Height=1.45521
+						End
+						Item
+							Type=Line
+							Name='Line10'
+							Top=5.715
+							Width=9.89
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox2'
+							Left=1.00542
+							Top=5.95313
+							Width=0.582083
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Gift'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox3'
+							Left=2.43417
+							Top=5.95313
+							Width=2.56646
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Commercial sample'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox4'
+							BorderStyles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+							Left=1.87854
+							Top=5.92667
+							Width=0.5
+							Height=0.5
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox5'
+							Left=5.64
+							Top=5.95313
+							Width=1.37583
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Documents      '
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox6'
+							BorderStyles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+							Left=5.03
+							Top=5.92667
+							Width=0.5
+							Height=0.5
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox7'
+							Left=8.06979
+							Top=5.95313
+							Width=1.13771
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Other'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox8'
+							BorderStyles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+							Left=7.46125
+							Top=5.92667
+							Width=0.5
+							Height=0.5
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox1'
+							Left=0.08
+							Top=2.40771
+							Width=0.978958
+							Height=0.423333
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Bold=T
+							End
+							TextAlign=TopLeft
+							Text='To:'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							Left=1.11125
+							Top=2.24896
+							Width=5.66208
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=142500,0
+								Bold=T
+							End
+							ShrinkFontToFit=T
+							TextAlign=TopLeft
+							DataField='receiver_name'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox3'
+							Left=0.08
+							Top=2.96333
+							Width=1.5875
+							Height=0.555625
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							TextAlign=TopLeft
+							Text='Address:'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox2'
+							Left=5.60917
+							Top=5.08
+							Width=3.99521
+							Height=0.529167
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=142500,0
+								Bold=T
+							End
+							ShrinkFontToFit=T
+							DataField='receiver_tel'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox5'
+							Left=0.079375
+							Top=0.846667
+							Width=1.93146
+							Height=0.502708
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Bold=T
+							End
+							TextAlign=TopLeft
+							Text='From:Name:'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox7'
+							Left=0.079375
+							Top=1.50813
+							Width=1.50813
+							Height=0.502708
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							TextAlign=TopLeft
+							Text='Address:\r\n'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox3'
+							Left=0.079375
+							Top=3.51896
+							Width=8.59896
+							Height=1.19063
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=142500,0
+								Bold=T
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							TextAlign=TopLeft
+							DataField='receiver_address1'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox10'
+							Left=0.079375
+							Top=5.21229
+							Width=1.71979
+							Height=0.370417
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Postal Code:\r\n'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox4'
+							Left=1.93146
+							Top=5.00063
+							Width=2.67229
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=142500,0
+								Bold=T
+							End
+							ShrinkFontToFit=T
+							DataField='receiver_zip'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox11'
+							Left=4.81542
+							Top=5.13292
+							Width=0.820208
+							Height=0.502708
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Tel:'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox5'
+							Left=2.19604
+							Top=0.820208
+							Width=3.20146
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							TextAlign=TopLeft
+							DataField='sender_name'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox6'
+							Left=1.37583
+							Top=1.48167
+							Width=3.86292
+							Height=0.635
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							TextAlign=TopLeft
+							DataField='sender_address1'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox14'
+							Left=6.00604
+							Top=0.767292
+							Width=3.41313
+							Height=1.45521
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='TAIPEI TAIWAN (R.O.C.)\r\nPOSTAGE PAID\r\nLICENCE NO.TP6672'
+						End
+						Item
+							Type=PictureBox
+							Name='PictureBox1'
+							Left=0.370417
+							Top=-0.185208
+							Width=0.79375
+							Height=0.79375
+							Picture=1282
+89504E470D0A1A0A0000000D49484452000000170000001B080600000097E814DB0000000473424954080808087C0864
+88000000097048597300000EC400000EC401952B0E1B000004A4494441544889ED94696C945514869F6F16A6D34E296D
+29D0B2B4882CB215502C8B51102101030613423421A144288B5484360425111365551202884865890D102841112518C4
+0265D540592A911664E932B4748096AE33735F7F14689AD2684C887F7C93FBE39E7BCF93F37DF79CD792249E926C4F0B
+FC3FFCBF813BFEC9A5803FC0C54BA5E45F2BC777B706A7D34EC7D8D6F4E9154DE72E51FF0E5E57E7E7EB6DB97CB1F922
+05D7EE8365E1F1B8080482D454D5E3F1387879682C697307337C5842B37CABA53ECFFBFD36D3DEFD8933BF963261420F
+DE1CDF9D171263080F6F45206028F6D670E44421993B2E51507087F9B313F964C9089C4E6723444FD0D973C58A895FAB
+F83E19DA7FF0CF275D79AC0A494BD6E68988D57A7B4A966A6BEA1F9F35ABDCE7AB66E8A8ED48760EED9F44974E1EB85D
+84BC25100C60C57542762714DEC0B200870D425CEC3C5ACD5BA939A4A5F667D5D2D14FAE7CF6BC8372C7AC51DEE5F2C7
+31336FB60CC884BA653E5A24B36A69C33E3254A68D4B7222657FAB15DBAECAE659AE9F0FE54B929AC0F30BCAE58AFE5C
+4B3E3DDE100806648AAECBCC9826F3C63899DD5932255E99F4F932E346C9145C93F9E38A4CEF6E526686029286BC9AA9
+516333150C06D5A45BF6FD780D87DDC6D429FD40062D9C079B33A05367B080D4E9B07001D81D70FA142C4B8340100AAE
+A27A831D98F5CE4066BF7780CB97CB9AB662CEA92212FBB623BE7338C8404C1798B100766D050153E780A30D8C180465
+F72050DD90983C13120702307C481CA16E27A77F2B69844B5058F480FECF3D1C0ACB06D3A7C1C96CF05E07CBC04B03B0
+5E198D2EE44242144424407515385DE07103D031CE43DBB6A1E417F81AE1C1A0A1AE3E48EBF0568F0230270576EC81B8
+48080460CB0E943C1906BF021B33A1B810FA2742EE79886C073DFAE072390871D9A9A8F0377A8BDD61C313E6E47659D5
+C3800DA6A640561674ED0E9D1360F72E989C8C95320336AC838458D8B717E23B40D000505BEBA7B62640786B5763E516
+D0ED9948CEE7966082069BDD06278FC0D6ADF0E03E9820A4BF0F29D3D1ED5B90BE104A7D9034004A2A1A7E23505C5C49
+69790D3DBA47377DD0D123E3D9BE338F0B17BC0C181807632742423FF86623545742CA02E8DB13766582C3017BF6415D
+1DD81D5849CF03907DF406B57586A12FC635B5DC7163BA121D13CA9A0D671BBEC6638328C01604CB8F15055688C0E600
+BBC172D761B5B1C05D0721C20FACFF2A9761433AD1AB6774F3095DBDFEAC0859A1EF8F1549CB3F94C2DC32F1B10D2BD4
+2D933E4F66D32699B6ED64DAB791E9102945844907766AC9BAF3227CA5B28FDE6C3EA192E40F18BD3E69AF5C519FE9F0
+0F17A5DA4AA9A242F2DD95CACAA5CA2AA9A656BAE393CA7D526585F4E09E36AD3F2E9CCBB4E8E3638F594F74456F69B5
+86BEB643B6A8D55AB9EE8CAAEB832DBA624979B5E67E7058B8572A79D641F9FDA665577CA4FB957ED2161F2163CB397A
+766BCDC4F1DD199ED491E8E8308C115E6F05BFE4DC24EBBB7C7C954116A70F63715A1236AB91D122FC91B24F14B1F6CB
+73E49CBAC5DDF21A5CAD6C0843BDDFA27D8730C68CEC4AEACC4124F6896E96FBB7F047F296D59257709F8B57EEE270D8
+18D82B8ADECF461019E16C31E72F4DA403B3C2B9FFE50000000049454E44AE426082
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox12'
+							Left=1.79917
+							Width=5.10646
+							Height=0.582083
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Bold=T
+							End
+							TextAlign=TopLeft
+							Text='CHUNGHWA POST CO., LTD.'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox13'
+							Left=7.09083
+							Top=-0.0264583
+							Width=1.00542
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Bold=T
+							End
+							TextAlign=TopLeft
+							Text='CN22\r\n'
+						End
+						Item
+							Type=Line
+							Name='Line15'
+							Top=0.635
+							Width=9.92
+						End
+						Item
+							Type=Line
+							Name='Line16'
+							Left=9.82
+							Top=0.64
+							Height=6.95354
+						End
+						Item
+							Type=Line
+							Name='Line17'
+							Top=0.64
+							Height=6.86
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox1'
+							BorderStyles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+							Left=0.291042
+							Top=5.87375
+							Width=0.5
+							Height=0.5
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox12'
+							Left=0.343958
+							Top=5.92667
+							Width=0.396875
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=120000,0
+								Bold=T
+							End
+							Text='√'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox13'
+							Left=5.90021
+							Top=0.15875
+							Width=3.70417
+							Height=0.608542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=90000,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							Text='May be opened officially'
+						End
+					End
+				End
+				Object GroupFooter
+					Height=2.80458
+					Items Control
+						Item
+							Type=Line
+							Name='Line11'
+							Left=5.9
+							Top=0.74
+							Width=3.99
+						End
+						Item
+							Type=Line
+							Name='Line12'
+							Left=5.90021
+							Height=1.24
+						End
+						Item
+							Type=Line
+							Name='Line13'
+							Left=8.06979
+							Height=1.24
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox9'
+							Left=6.00604
+							Top=0.211667
+							Width=1.98438
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Total weight\r\n'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox10'
+							Left=8.20208
+							Top=0.211667
+							Width=1.5875
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							Text='Total value\r\n\r\n\r\n'
+						End
+						Item
+							Type=Line
+							Name='Line14'
+							Top=1.24354
+							Width=9.89
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox15'
+							Left=0.132292
+							Top=0.079375
+							Width=5.58271
+							Height=1.00542
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							Text='For commercial items only if known, HS tariff number and country of origin of goods.'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox9'
+							Left=6.19125
+							Top=0.820208
+							Width=1.61396
+							Height=0.396875
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							DataField='weight'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox10'
+							Left=8.20208
+							Top=0.79375
+							Width=1.40229
+							Height=0.396875
+							ShrinkFontToFit=T
+							DataField='declare_value'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox16'
+							Left=0.211667
+							Top=1.42875
+							Width=9.39271
+							Height=1.37583
+							Object Font
+								Name='Microsoft Sans Serif'
+								Size=82500,0
+								Weight=400
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							Text='I, the undersigned, whose name and address are given on the item, certify that the particulars given in this declaration are correct and that this item does not contain and dangerous article or articles prohibited by legislation or by postal or customs regulations.\r\nDate and sender’s signature:'
+						End
+						Item
+							Type=Line
+							Name='Line18'
+							Height=2.98979
+						End
+						Item
+							Type=Line
+							Name='Line19'
+							Left=9.82
+							Height=2.99
+						End
+					End
+				End
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='receiver_name'
+		End
+		Item
+			Name='receiver_tel'
+		End
+	End
+End

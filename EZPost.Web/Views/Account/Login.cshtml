@@ -1,0 +1,141 @@
+﻿@{
+    Layout = null;
+}
+@using System.Web.Optimization
+@using Abp.Timing
+@using Abp.Web.Mvc.Extensions
+@using Microsoft.Owin.Security
+@model EZPost.Web.Models.Account.LoginFormViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/icon.png">
+
+    <script src="~/Content/scripts/jquery/jquery-1.10.2.min.js"></script>
+    <!--bootstrap组件start-->
+    <link href="~/Content/scripts/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/scripts/bootstrap/bootstrap.min.js"></script>
+    <!--bootstrap组件end-->
+    @Scripts.Render("~/Bundles/vendor/js/top")
+    <script src="~/Content/scripts/plugins/layout/jquery.layout.js"></script>
+    
+    <script src="~/Content/scripts/plugins/dialog/dialog.js"></script>
+    @System.Web.Optimization.Styles.Render(
+    "~/Content/scripts/plugins/datetime/css",
+    "~/Content/styles/lenton-ui.css")
+    @System.Web.Optimization.Scripts.Render(
+    "~/Content/scripts/plugins/validator/js",
+    "~/Content/scripts/utils/js")
+   
+    <link href="~/Views/Account/Login.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #364150 !important;
+        }
+        .title {
+            color: #4db3a5;
+            text-align: center;
+            font-size: 58px;
+            font-weight: 400 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+   
+    <div id="LoginArea" class="row">
+        <h1 class="title">LINEX</h1>
+        <div class="col-lg-12">
+            <div class="well bs-component">
+                <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
+                    <fieldset>
+                        <legend>@L("LogIn")</legend>
+
+                        @if (Model.IsMultiTenancyEnabled)
+                        {
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" id="TenancyName" placeholder="@L("TenancyName")" required maxlength="@EZPost.MultiTenancy.Tenant.MaxTenancyNameLength">
+                                    <span class="text-muted">@L("CanBeEmptyToLoginAsHost")</span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" id="TenancyName" value="">
+                        }
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" id="EmailAddressInput" placeholder="@L("UserNameOrEmail")" required maxlength="@EZPost.Users.User.MaxEmailAddressLength">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="password" class="form-control" id="PasswordInput" placeholder="@L("Password")" required maxlength="@EZPost.Users.User.MaxPlainPasswordLength">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="RememberMeInput">
+                                        <span class="ripple"></span>
+                                        <span class="check"></span> @L("RememberMe")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input id="ReturnUrlHash" type="hidden" name="returnUrlHash"/>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("LogIn")</button>
+                                @*<a class="btn btn-success" href="@Url.Action("Register")"><i class="fa fa-sign-in"></i> @L("Register")</a>*@
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                @{
+                    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes().ToList();
+                }
+
+                @if (loginProviders.Count > 0)
+                {
+                    <p>@L("OrLoginWith"):</p>
+
+
+                    using (Html.BeginForm("ExternalLogin", "Account", method: FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>
+                        <input type="hidden" name="provider" value=""/>
+
+                        foreach (var provider in loginProviders)
+                        {
+                            <a class="btn btn-default btn-sm social-login-link" title="@provider.AuthenticationType"
+                               data-provider="@provider.AuthenticationType"
+                               href="javascript:;">
+                                <i class="fa fa-@(provider.AuthenticationType.ToLower())"></i> @provider.AuthenticationType
+                            </a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
+    @Scripts.Render("~/Bundles/js")
+    <script src="~/Scripts/sweetalert/sweet-alert.min.js"></script>
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+   <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
+    <script src="~/Views/Account/Login.js"></script>
+</body>
+</html>

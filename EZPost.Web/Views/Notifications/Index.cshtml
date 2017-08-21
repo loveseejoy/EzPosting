@@ -1,0 +1,132 @@
+﻿@using Abp.Web.Mvc.Extensions
+@using EZPost.Authorization
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+<script src="~/signalr/hubs"></script>
+@Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
+<div class="page-body">
+    <div class="toolsArea">
+        <div class="btn-group">
+            <a id="lr-replace" class="btn btn-info" onclick="reload();" authorize="no"><i class="fa fa-refresh"></i>&nbsp;@L("Reload")</a>
+            @if (IsGranted(PermissionNames.Pages_Notification_SendMessage))
+            {
+                <a id="lr-add" class="btn btn-primary btnSendMessage" authorize="no"><i class="fa fa-plus"></i>&nbsp;SendNewMessage</a>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body">
+                    <table class="table table-striped table-bordered table-hover" id="notificationsTable" width="100%"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script>
+        var _notificationService = abp.services.app.notification;
+        var _notificationsTable;
+        $(function () {
+            _notificationsTable = $("#notificationsTable")
+                .DataTable({
+                    "ajax":
+                    {
+                        "url": "@Url.Action("GetNotifications", "Notifications")",
+                        "data": function(data) {
+                            return JSON.stringify(data);
+                        }
+                    },
+                    "ordering": false,
+                    "columns": [
+                        {
+                            className: "text-center",
+                            title: 'SetRead',
+                            data: '',
+                            render: function (data, type, row, meta) {
+                                if (row["State"] === 0) {
+                                    return "<a href=\"javascript:void(0)\" class=\"btn btn-info btnSetRead\" title=\"SetAsRead\"  data-id=\"" + row["Id"] + "\"> <span class=\"glyphicon glyphicon-zoom-in\" ></span></a>";
+                                } else {
+                                    return "";
+                                }
+                            }
+                        }, {
+                            className: "text-center",
+                            title: 'State',
+                            data: 'State',
+                            render: function (data, type, row, meta) {
+                               if (data === 0) {
+                                   return 'UnRead';
+                               } else {
+                                   return 'Read';
+                               }
+                            }
+                        }, {
+                            className: "text-center",
+                            title: 'Message',
+                            data: 'Notification.Data.Message',
+                            render: function (data, type, row, meta) {
+                                //red for warn
+                                if (row.Notification.Severity === 2 || row.Notification.Severity === 3) {
+                                    return " <span style=\"color:red\" >"+data+"</span>";
+                                } if (row.Notification.Severity === 0 || row.Notification.Severity === 1) {
+                                    return " <span style=\"color:green\" >" + data + "</span>";
+                                } else {
+                                    return data;
+                                }
+                            }
+                        }, {
+                            className: "text-center",
+                            title: 'RecevieTime',
+                            data: 'Notification.CreationTime',
+                            render: function (data, type, row, meta) {
+                                if (data != null) {
+                                    return new Date(Number(data.toString().replace(/\D/g, ''))).Format("yyyy-MM-dd hh:mm:ss");
+                                } else {
+                                    return "";
+                                }
+                            }
+                        }]
+                });
+
+            //注册接受到信息的事件
+            abp.event.on('abp.notifications.received', function (userNotification) {
+                _notificationsTable.ajax.reload();
+            });
+
+           $("body").on("click",
+                ".btnSetRead",
+                function () {
+                    var id = $(this).attr("data-id");
+                    abp.ui.setBusy();
+                    _notificationService.setNotificationAsRead(id).done(function () {
+                        top.getUnReadMessageCout();
+                        _notificationsTable.ajax.reload();
+                    }).always(function() {
+                        abp.ui.clearBusy();
+                    });
+                });
+
+           $(".btnSendMessage")
+                .click(function() {
+                    dialogOpen({
+                        id: "Form",
+                        title: 'SendMessage',
+                        url: '@Url.Action("SendMessage", "Notifications")',
+                        width: "950px",
+                        height: "600px",
+                        callBack: function(iframeId) {
+                            parent.frames[iframeId].save();
+                        }
+                    });
+                });
+
+        });
+    </script>}
+

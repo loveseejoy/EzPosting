@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "CreateOrUpdateUser";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+@model EZPost.Users.Dto.GetUserForEditOutput
+<div style="margin-left: 10px; margin-right: 10px;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#BaseInfo" data-toggle="tab" aria-expanded="true">基本信息</a></li>
+        <li class=""><a href="#ExpandInfo" data-toggle="tab" aria-expanded="false">角色</a></li>
+    </ul>
+    @if (Model.User.Id.HasValue)
+    {
+        @Html.HiddenFor(x => x.User.Id)
+    }
+    <div class="tab-content" style="padding-top: 15px;">
+        <div id="BaseInfo" class="tab-pane active" style=" padding-right: 30px;">
+            <table class="form">
+                <tbody>
+                <tr>
+                    <td class="formTitle">用户名<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        @Html.TextBoxFor(x => x.User.UserName, new {@class = "form-control", placeholder = "请输入用户名", isvalid ="yes", checkexpession = "NotNull"})
+                    </td>
+                    <td class="formTitle">密码<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        @Html.TextBoxFor(x => x.User.Password, new {@class = "form-control", placeholder = "请输入密码", isvalid = (Model.User.Id.HasValue ? "" : "yes"), checkexpession = "NotNull"})
+                    </td>
+                </tr>
+                <tr>
+                        <td class="formTitle">是否启用</td>
+                        <td class="formValue">
+                            @Html.CheckBoxFor(x => x.User.IsActive)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="ExpandInfo" class="tab-pane">
+            @foreach (var role in Model.Roles)
+            {
+                <div class="md-checkbox">
+               <input id="EditUser_@(role.RoleName)" class="md-check" type="checkbox" name="@(role.RoleName)" value="true" @Html.Raw(role.IsAssigned ? "checked=\"checked\"" : "")>
+                <label for="EditUser_@(role.RoleName)">
+                        <span class="inc"></span>
+                        <span class="check"></span>
+                        <span class="box"></span>
+                        @role.RoleDisplayName
+                    </label>
+                </div>
+            }
+            @Html.HiddenFor(x=>x.AssignedRoleNames)
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function save() {
+
+             if (!$('#form1').Validform()) {
+                 return false;
+             }
+            var  assignedRoleNames = "";
+             $(".md-check").each(function () {
+                 if ($(this).is(':checked')) {
+                     //assignedRoleNames.push($(this).attr('name'));
+                     assignedRoleNames += $(this).attr('name')+",";
+                 }
+             });
+             $("#AssignedRoleNames").val(assignedRoleNames);
+             $.SaveForm({
+                 url: "@Url.Action("SaveUser", "Setting")",
+                 param: $("#form1").serialize(),
+                 loading: "正在保存数据...",
+                 success: function () {
+                     $.currentIframe().$("#userTable").DataTable().ajax.reload();
+                 }
+             });
+        };
+    </script>
+}

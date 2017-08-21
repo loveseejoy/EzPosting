@@ -1,0 +1,180 @@
+﻿@using EZPost.Authorization
+
+@{
+    ViewBag.Title = "User";
+}
+<div class="page-body">
+    <div class="toolsArea">
+        <table>
+            <tr>
+                <td><input id="txtUserName" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;"></td>
+                <td><a id="btnSearchUser" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="toolsArea">
+        <div class="btn-group">
+            <a id="lr-replace" class="btn btn-info" onclick="reload();" authorize="no"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+
+            @if (IsGranted(PermissionNames.Pages_Setting_User_Add))
+            {
+                <a id="lr-add" class="btn btn-primary btnUserAdd" authorize="no"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            }
+            @if (IsGranted(PermissionNames.Pages_Setting_User_Edit))
+            {
+                <a id="lr-edit" class="btn btn-warning  btnUserEdit" authorize="no"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+            }
+            @if (IsGranted(PermissionNames.Pages_Setting_User_SetPermission))
+            {
+                <a id="lr-edit" class="btn btn-success  btnUserPermission" authorize="no"><i class="fa fa-pencil-square-o"></i>&nbsp;权限</a>
+            }
+            @if (IsGranted(PermissionNames.Pages_Setting_User_Delete))
+            {
+                <a id="lr-delete" class="btn btn-danger btnUserDelete" authorize="no"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body">
+                    <table class="table table-striped table-bordered table-hover" id="userTable" width="100%"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var userTable;
+        $(function () {
+            userTable = $("#userTable").DataTable({
+                "ajax":
+                {
+                    "url": "@Url.Action("GetUsers","Setting")",
+                    "data": function (data) {
+                        data.UserName = $("#txtUserName").val();
+                        return JSON.stringify(data);
+                    }
+                },
+                "ordering": false,
+                "columns": [
+                {
+                    className: "text-center",
+                    title: '用户名',
+                    data: 'UserName'
+                },
+                   {
+                       className: "text-center",
+                       title: '是否启用',
+                       data: 'IsActive'
+                   },
+                    {
+                        className: "text-center",
+                        title: '上次登录',
+                        data: 'LastLoginTime',
+                        render: function (data, type, row, meta) {
+                            if (data != null) {
+                                return new Date(Number(data.toString().replace(/\D/g, ''))).Format("yyyy-MM-dd hh:mm:ss");
+                            } else {
+                                return "";
+                            }
+                        }
+                    },
+                    {
+                        className: "text-center",
+                        title: '创建时间',
+                        data: 'CreationTime',
+                        render: function (data, type, row, meta) {
+                            return new Date(Number(data.toString().replace(/\D/g, ''))).Format("yyyy-MM-dd hh:mm:ss");
+                        }
+                    }
+                ],
+                'fnDrawCallback':
+                    function () {
+                        $(".btnUserDetails").click(function () {
+
+                        });
+                    }
+            });
+
+            $('#userTable tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    userTable.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+            $("#btnSearchUser").click(function () {
+                userTable.ajax.reload();
+            });
+
+            $(".btnUserAdd").click(function () {
+                dialogOpen({
+                    id: "Form",
+                    title: '添加用户',
+                    url: '@Url.Action("CreateOrUpdateUser", "Setting")',
+                    width: "950px",
+                    height: "600px",
+                    callBack: function (iframeId) {
+                        parent.frames[iframeId].save();
+                    }
+                });
+            });
+
+            $(".btnUserEdit").click(function () {
+                var selectData = userTable.rows('.selected').data();
+                if (checkedSelected(selectData, false)) {
+                    dialogOpen({
+                        id: "Form",
+                        title: '编辑角色',
+                        url: '@Url.Action("CreateOrUpdateUser", "Setting")/' + selectData[0].Id,
+                        width: "950px",
+                        height: "400px",
+                        callBack: function (iframeId) {
+                            parent.frames[iframeId].save();
+                        }
+                    });
+                }
+            });
+
+
+            $(".btnUserDelete").click(function () {
+                var selectData = userTable.rows('.selected').data();
+                if (checkedSelected(selectData, false)) {
+                    $.RemoveForm({
+                        url: "@Url.Action("DeleteUser", "Setting")",
+                        param: { id: selectData[0].Id },
+                        success: function (data) {
+                            userTable.ajax.reload();
+                        }
+                    });
+                }
+            });
+
+
+            $(".btnUserPermission").click(function () {
+                var selectData = userTable.rows('.selected').data();
+                if (checkedSelected(selectData, false)) {
+                    dialogOpen({
+                        id: "Form",
+                        title: '编辑权限',
+                        url: '@Url.Action("UserPermission", "Setting")/' + selectData[0].Id,
+                        width: "550px",
+                        height: "800px",
+                        callBack: function (iframeId) {
+                            parent.frames[iframeId].save();
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
+}
+
+

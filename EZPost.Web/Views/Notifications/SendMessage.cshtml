@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "SendMessage";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+<div style="margin-left: 10px; margin-right: 10px;">
+    <div class="tab-content" style="padding-top: 15px;">
+        <div id="BaseInfo" class="tab-pane active" style="padding-right: 30px;">
+            <table class="form">
+                <tbody>
+                    <tr>
+                        <td class="formTitle">Message-Content<font face="宋体">*</font></td>
+                        <td class="formValue">
+                            <textarea type="text" name="Message"  id="Message" required class="form-control" placeholder="Message-Content" rows="3"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var _notificationService = abp.services.app.notification;
+        function save() {
+            if (!$('#form1').valid()) {
+                return;
+            }
+            var message = $("#form1").serializeFormToObject();
+
+            abp.ui.setBusy();
+            _notificationService.sendMessage(message).done(function () {
+                dialogMsg("Success", 1);
+                dialogClose();
+            }).always(function () {
+                abp.ui.clearBusy();
+            });
+        }
+    </script>
+}
+

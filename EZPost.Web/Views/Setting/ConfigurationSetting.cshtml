@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "ConfigurationSetting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-body" id="configurationSetting">
+    <div class="row" style="text-align: right">
+        <button class="btn btn-success" v-on:click="save()">保存</button>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#EmailSetting" data-toggle="tab" aria-expanded="true">邮箱设置</a></li>
+        <li class=""><a href="#OtherSetting" data-toggle="tab" aria-expanded="false">其他设置</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="EmailSetting" class="tab-pane active">
+            <table class="form">
+                <tbody>
+                <tr>
+                    <td class="formTitle">用户名</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.smtpUserName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">密码</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.smtpPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">默认发送邮箱地址</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.defaultFromAddress" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">默认发送人名字</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.defaultFromDisplayName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">服务器</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.smtpHost" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">端口</td>
+                    <td class="formValue">
+                        <input type="text" class="form-control" v-model="emailSetting.smtpPort" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="OtherSetting" class="tab-pane">
+        </div>
+    </div>
+</div>
+<script src="~/Content/vue/vue.js"></script>
+@section scripts{
+    <script>
+        var configurationService = abp.services.app.setting;
+        (function() {
+            var vue = new Vue({
+                el: "#configurationSetting",
+                data: {
+                    emailSetting:{}
+                },
+                methods: {
+                    init:function() {
+                        var _this = this;
+                        abp.ui.setBusy();
+                        configurationService.getAllSettings().done(function (result) {
+                            console.log(result);
+                            _this.emailSetting = result.emailSetting;
+                        }).always(function() {
+                            abp.ui.clearBusy();
+                        });
+                    },
+                    save:function() {
+                        abp.ui.setBusy();
+                        configurationService.updateAllSettings({
+                            emailSetting:this.emailSetting
+                        }).done(function() {
+                            abp.message.success("保存成功");
+                        }).always(function () {
+                            abp.ui.clearBusy();
+                        });
+                    }
+                }
+            });
+            vue.init();
+        })();
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "UserPermission";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+@using Abp.Extensions
+@model EZPost.Users.Dto.GetUserPermissionsForEditOutput
+@helper CreatePermissionTreeItems(string parentName)
+{
+var permissions = Model.Permissions.Where(p => p.ParentName == parentName || (p.ParentName.IsNullOrEmpty() && parentName.IsNullOrEmpty())).ToList();
+if (!permissions.Any())
+{
+    return;
+}
+    <ul>
+        @foreach (var permission in permissions)
+        {
+            var selected = Model.GrantedPermissionNames.Contains(permission.Name);
+            <li id="@permission.Name" class="jstree-open" data-jstree='{"selected": @selected.ToString().ToLower()}'>
+                @permission.DisplayName
+                @CreatePermissionTreeItems(permission.Name)
+            </li>
+        }
+    </ul>
+}
+@Html.HiddenFor(x => x.GrantedPermissionNames)
+@Html.HiddenFor(x => x.Id)
+ <div class="permission-tree">
+    @CreatePermissionTreeItems(null)
+</div>
+@section scripts{
+    <link href="~/Content/scripts/plugins/jstree/themes/default/style.css" rel="stylesheet"/>
+    <script src="~/Content/scripts/plugins/jstree/jstree.js"></script>
+    <script src="~/Scripts/_PermissionTree.js"></script>
+    <script>
+        var _permissionsTree;
+        $(function () {
+            _permissionsTree = new PermissionsTree();
+            _permissionsTree.init($('.permission-tree'));
+        });
+
+        function save() {
+            var permissionNames = _permissionsTree.getSelectedPermissionNames();
+            $("#GrantedPermissionNames").val(permissionNames);
+            $.SaveForm({
+                url: "@Url.Action("SaveUserPermission", "Setting")",
+                param: $("#form1").serialize(),
+                loading: "正在保存数据...",
+                success: function () {
+                    $.currentIframe().location.reload();
+                }
+          });
+        }
+    </script>
+}
+
+

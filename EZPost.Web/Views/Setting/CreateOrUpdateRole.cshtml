@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "CreateOrUpdateRole";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+@using Abp.Extensions
+@model EZPost.Roles.Dto.GetRoleForEditOutput
+@helper CreatePermissionTreeItems(string parentName)
+{
+var permissions = Model.Permissions.Where(p => p.ParentName == parentName || (p.ParentName.IsNullOrEmpty() && parentName.IsNullOrEmpty())).ToList();
+if (!permissions.Any())
+{
+    return;
+}
+<ul>
+@foreach (var permission in permissions)
+{
+    var selected = Model.GrantedPermissionNames.Contains(permission.Name);
+    <li id="@permission.Name" class="jstree-open" data-jstree='{"selected": @selected.ToString().ToLower()}'>
+        @permission.DisplayName
+        @CreatePermissionTreeItems(permission.Name)
+    </li>
+}
+</ul>
+}
+<div style="margin-left: 10px; margin-right: 10px;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#BaseInfo" data-toggle="tab" aria-expanded="true">基本信息</a></li>
+        <li class=""><a href="#ExpandInfo" data-toggle="tab" aria-expanded="false">权限</a></li>
+    </ul>
+    <div class="tab-content" style="padding-top: 15px;">
+        <div id="BaseInfo" class="tab-pane active" style="padding-right: 30px;">
+            @if (Model.Role.Id.HasValue)
+            {
+                <input type="hidden" id="Id" name="Id" value="@Model.Role.Id"/>
+            }
+            <table class="form">
+                <tbody>
+                <tr>
+                    <td class="formTitle">角色名<font face="宋体">*</font></td>
+                    <td class="formValue">
+                        <input type="text" name="DisplayName" value="@Model.Role.DisplayName" id="DisplayName" class = "form-control" placeholder = "请输入角色名" isvalid = "yes" checkexpession = "NotNull"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="ExpandInfo" class="tab-pane">
+            <div class="permission-tree">
+                @CreatePermissionTreeItems(null)
+            </div>
+            </div>
+    </div>
+</div>
+@section scripts{
+<link href="~/Content/scripts/plugins/jstree/themes/default/style.css" rel="stylesheet" />
+<script src="~/Content/scripts/plugins/jstree/jstree.js"></script>
+<script src="~/Scripts/_PermissionTree.js"></script>
+    <script>
+        var _roleService = abp.services.app.role;
+        var _permissionsTree;
+        $(function() {
+            _permissionsTree = new PermissionsTree();
+            _permissionsTree.init($('.permission-tree'));
+        });
+
+        function save() {
+            if (!$('#form1').Validform()) {
+                return false;
+            }
+            var permissionNames = _permissionsTree.getSelectedPermissionNames();
+            var role = $("#form1").serializeFormToObject(); //serializeFormToObject is defined in main.js
+
+            abp.ui.setBusy();
+            _roleService.createOrUpdateRole({
+                Role: role,
+                grantedPermissionNames: permissionNames
+            }).done(function () {
+                dialogMsg("Success", 1);
+                $.currentIframe().$("#roleTable").DataTable().ajax.reload();
+                dialogClose();
+            }).always(function () {
+                abp.ui.clearBusy();
+            });
+        }
+    </script>
+}
