@@ -66,7 +66,7 @@ namespace EZPost.Migrations.SeedData
                         UserName = User.AdminUserName,
                         Name = "System",
                         Surname = "Administrator",
-                        EmailAddress = "admin@aspnetboilerplate.com",
+                        EmailAddress = "3816703@qq.com",
                         IsEmailConfirmed = true,
                         Password = new PasswordHasher().HashPassword(User.DefaultPassword)
                     });

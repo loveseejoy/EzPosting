@@ -17,10 +17,6 @@ namespace EZPost.Migrations.SeedData
 
         public void Create()
         {
-            //Emailing
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "no-reply@linexsolutions.com");
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromDisplayName, "no-reply@linexsolutions.com");
-
             //Languages
             AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "en");
         }
