@@ -54,7 +54,7 @@ namespace EZPost.Users
             {
                 //if (user.AgentId.HasValue)
                 //{
-                //    identity.AddClaim(new Claim(ClaimConst.AgentId, user.AgentId.ToString()));
+                //    identity.AddClaim(new Claim(ClaimConst.LocationCode, user.LocationCode.ToString()));
                 //}
             }
             return identity;

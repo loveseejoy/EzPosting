@@ -12,46 +12,7 @@ namespace EZPost
 {
      public static class AbpSessionExtensions
     {
-        /// <summary>
-        /// 获取代理id
-        /// </summary>
-        /// <param name="session"></param>
-        /// <returns></returns>
-         public static string GetAgentId(this IAbpSession session)
-        {
-            return GetClaimValue(ClaimConst.AgentId);
-        }
-
-        /// <summary>
-        /// 获取客户id
-        /// </summary>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        public static string GetCustomerId(this IAbpSession session)
-        {
-            return GetClaimValue(ClaimConst.CustomerId);
-        }
-
-        /// <summary>
-        /// 获取登录用户的LocationId
-        /// </summary>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        public static string GetLocationId(this IAbpSession session)
-        {
-            return GetClaimValue(ClaimConst.LocationId);
-        }
-
-        /// <summary>
-        /// 获取登录用户的Gmt
-        /// </summary>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        public static string GetLocationGmt(this IAbpSession session)
-        {
-            return GetClaimValue(ClaimConst.Gmt);
-        }
-
+       
         /// <summary>
         /// 获取登录用户的LocationCode
         /// </summary>
@@ -62,16 +23,6 @@ namespace EZPost
             return GetClaimValue(ClaimConst.LocationCode);
         }
 
-
-        /// <summary>
-        /// 获取登录用户的LocationName
-        /// </summary>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        public static string GetLocationName(this IAbpSession session)
-        {
-            return GetClaimValue(ClaimConst.LocationName);
-        }
 
         private static string GetClaimValue(string claimType)
          {
