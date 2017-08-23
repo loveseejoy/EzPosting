@@ -94,7 +94,7 @@
                 var navJson = {};
                 tablist = $("#tab_list_add").Tab({
                     items: [
-                        { id: 'Home', title: 'Welcome', closed: false, icon: 'fa fa fa-desktop', url: contentPath + '/Home/DashBord' },
+                        { id: 'Home', title: '主页', closed: false, icon: 'fa fa fa-desktop', url: contentPath + '/Home/DashBord' },
                     ],
                     tabScroll: false,
                     width: $(window).width() - $("#sidebar").width(),
@@ -133,7 +133,7 @@
             $("#btnNotification").click(function () {
                 top.tablist.newTab({
                     id: 'Notification',
-                    title: 'Notification',
+                    title: '消息通知',
                     closed: true,
                     icon: "fa fa-globe",
                     url: '@Url.Action("Index","Notifications")'

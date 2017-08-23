@@ -13,23 +13,23 @@ $.extend($.fn.dataTable.defaults, {
         "contentType": "application/json; charset=utf-8"
     },
     "language": {
-        "processing": "Loading...",
-        "lengthMenu": "Every Page Show _MENU_ Itmes",
-        "zeroRecords": "No Record",
-        "info": "Show _START_ To _END_ Result，Total _TOTAL_ Items",
-        "infoEmpty": "Show From 0 To 0 Result，Total 0 Item",
+        "processing": "加载中...",
+        "lengthMenu": "每页显示_MENU_ ",
+        "zeroRecords": "没有数据",
+        "info": "第 _START_ 到 _END_条，总共 _TOTAL_条",
+        "infoEmpty": "无记录",
         "infoFiltered": "",
         "infoPostFix": "",
-        "search": "Search:",
+        "search": "搜索:",
         "url": "",
-        "emptyTable": "No Record",
-        "loadingRecords": "Loading...",
+        "emptyTable": "没有记录",
+        "loadingRecords": "加载中...",
         "thousands": ",",
         "paginate": {
-            "first": "First",
-            "previous": "PrePage",
-            "next": "NextPage",
-            "last": "Last"
+            "first": "第一页",
+            "previous": "上一页",
+            "next": "下一页",
+            "last": "最后一页"
         },
         "aria": {
             "sortAscending": ": ASC",
