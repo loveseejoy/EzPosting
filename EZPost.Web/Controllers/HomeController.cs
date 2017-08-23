@@ -40,7 +40,6 @@ namespace EZPost.Web.Controllers
         }
         public ActionResult Dashbord()
         {
-            var agentId = Convert.ToInt32(AbpSession.GetAgentId());
             return View();
         }
     }

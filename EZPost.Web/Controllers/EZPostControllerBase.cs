@@ -111,27 +111,5 @@ namespace EZPost.Web.Controllers
                 Data = result
             };
         }
-
-        /// <summary>
-        /// 当前登录者的代理和客户id
-        /// 如果id都为空，则说明是管理者
-        ///  customerid不为空，则说明是客户， agentId不为空则说明是代理
-        /// </summary>
-        /// <returns></returns>
-        public int GetCurrentAgentId()
-        {
-            return AbpSession.GetAgentId() == null ? 0 : Convert.ToInt32(AbpSession.GetAgentId());
-        }
-
-        /// <summary>
-        /// 当前登录者的代理和客户id
-        /// 如果id都为空，则说明是管理者
-        ///  customerid不为空，则说明是客户， agentId不为空则说明是代理
-        /// </summary>
-        /// <returns></returns>
-        public int GetCurrentCustomerId()
-        {
-            return AbpSession.GetCustomerId() == null ? 0 : Convert.ToInt32(AbpSession.GetCustomerId());
-        }
     }
 }
