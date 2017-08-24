@@ -99,7 +99,6 @@
     <Compile Include="Configuration\AppSettingProvider.cs" />
     <Compile Include="Configuration\AppSettings.cs" />
     <Compile Include="Const\ClaimConst.cs" />
-    <Compile Include="Const\HawbTrackStatusCodeConst.cs" />
     <Compile Include="IAppFolders.cs" />
     <Compile Include="EZPostConsts.cs" />
     <Compile Include="EZPostCoreModule.cs" />
