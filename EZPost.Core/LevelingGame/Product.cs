@@ -17,9 +17,14 @@ namespace EZPost.LevelingGame
         public  string Decs { set; get; }
 
         /// <summary>
-        /// 价格
+        /// 真实售价
         /// </summary>
         public  decimal Price { set; get; } 
+
+        /// <summary>
+        /// 原价
+        /// </summary>
+        public  decimal OriginPrice { set; get; }
 
         /// <summary>
         /// 图片地址
