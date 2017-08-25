@@ -182,6 +182,13 @@
     <Compile Include="Configuration\Dto\SettingEditDto.cs" />
     <Compile Include="Configuration\ISettingAppService.cs" />
     <Compile Include="Configuration\SettingAppService.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\Dto\CreateOrUpdateGameInput.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\Dto\GameEditDto.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\Dto\GameListDto.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\Dto\GetGameForEditOutput.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\Dto\GetGamesInput.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\GameAppService.cs" />
+    <Compile Include="LevelingGameServices\GameAppService\IGameAppService.cs" />
     <Compile Include="NotificationAppService\Dto\GetUserNotificationsInput.cs" />
     <Compile Include="NotificationAppService\Dto\SendMessageInput.cs" />
     <Compile Include="NotificationAppService\INotificationAppService.cs" />

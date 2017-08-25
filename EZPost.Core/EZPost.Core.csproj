@@ -111,7 +111,10 @@
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="LevelingGame\Enums\LevelingType.cs" />
+    <Compile Include="LevelingGame\Enums\OrderStatus.cs" />
     <Compile Include="LevelingGame\Game.cs" />
+    <Compile Include="LevelingGame\Order.cs" />
+    <Compile Include="LevelingGame\OrderUser.cs" />
     <Compile Include="LevelingGame\Product.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
