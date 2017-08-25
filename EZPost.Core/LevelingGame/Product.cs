@@ -1,4 +1,6 @@
-﻿using Abp.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Abp.Domain.Entities;
+using EZPost.LevelingGame.Enums;
 
 namespace EZPost.LevelingGame
 {
@@ -23,5 +25,17 @@ namespace EZPost.LevelingGame
         /// 图片地址
         /// </summary>
         public  string PicUrl { set; get; }
+
+        /// <summary>
+        /// 代练类型
+        /// </summary>
+        public LevelingType LevelingType { set; get; }
+
+        /// <summary>
+        /// 所属游戏
+        /// </summary>
+        [ForeignKey("Game")]
+        public  int GameId { set; get; }
+        public  Game Game { set; get; }
     }
 }
