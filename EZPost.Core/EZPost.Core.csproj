@@ -112,7 +112,7 @@
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="LevelingGame\Enums\LevelingType.cs" />
     <Compile Include="LevelingGame\Game.cs" />
-    <Compile Include="LevelingGame\LevelingItmes.cs" />
+    <Compile Include="LevelingGame\Product.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
