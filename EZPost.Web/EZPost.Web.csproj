@@ -1119,7 +1119,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AudtingLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LevelingGameController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\SettingController.cs" />
@@ -1168,6 +1168,8 @@
     <Content Include="Content\Grid\SamInvoice.grf" />
     <Content Include="Views\AudtingLog\Index.cshtml" />
     <Content Include="Views\Setting\ConfigurationSetting.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\CreateOrUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

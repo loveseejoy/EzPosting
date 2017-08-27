@@ -12,11 +12,19 @@ namespace EZPost.LevelingGame
 
         public  decimal Amount { set; get; }
 
+        public  string Content { set; get; }
+
         public OrderStatus OrderStatus { set; get; }
+
+
+        [ForeignKey("Product")]
+        public int? ProductId { set; get; }
+        public  virtual Product Product { set; get; }
+
        
         [ForeignKey("OrderUser")]
         public  int OrderUserId { set; get; }
-        public  OrderUser OrderUser { set; get; }
+        public virtual OrderUser OrderUser { set; get; }
 
 
         public DateTime CreationTime { get; set; }

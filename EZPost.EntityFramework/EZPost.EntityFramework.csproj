@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201708170645109_intidata.Designer.cs">
       <DependentUpon>201708170645109_intidata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708260317201_initdata.cs" />
+    <Compile Include="Migrations\201708260317201_initdata.Designer.cs">
+      <DependentUpon>201708260317201_initdata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EZPostDataModule.cs" />
@@ -149,6 +153,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708170645109_intidata.resx">
       <DependentUpon>201708170645109_intidata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708260317201_initdata.resx">
+      <DependentUpon>201708260317201_initdata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

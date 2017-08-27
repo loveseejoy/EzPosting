@@ -12,6 +12,16 @@ namespace EZPost.LevelingGame
         public  string Title { set; get; }
 
         /// <summary>
+        /// 时间
+        /// </summary>
+        public  string Time { set; get; }
+
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public  string Grade { set; get; }
+
+        /// <summary>
         /// 详细描述
         /// </summary>
         public  string Decs { set; get; }
@@ -41,6 +51,6 @@ namespace EZPost.LevelingGame
         /// </summary>
         [ForeignKey("Game")]
         public  int GameId { set; get; }
-        public  Game Game { set; get; }
+        public  virtual Game Game { set; get; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using EZPost.Authorization.Roles;
+using EZPost.LevelingGame;
 using EZPost.MultiTenancy;
 using EZPost.Users;
 
@@ -10,6 +11,15 @@ namespace EZPost.EntityFramework
     public class EZPostDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+
+        public  IDbSet<Game> Game { set; get; }
+
+        public  IDbSet<Order> Order { set; get; }
+
+        public  IDbSet<OrderUser> OrderUser { set; get; }
+
+        public  IDbSet<Product> Product { set; get; }
+
 
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

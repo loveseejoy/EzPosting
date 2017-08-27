@@ -23,6 +23,19 @@ namespace EZPost.Web
                         icon: "fa fa-home",
                         requiresAuthentication: true
                         ))
+             .AddItem(
+                    new MenuItemDefinition(
+                        "LevelingGame",
+                        L("代练管理"),
+                        icon: "fa fa-home",
+                        requiresAuthentication: true
+                        ).AddItem(new MenuItemDefinition(
+                            "Game",
+                            L("游戏管理"),
+                            url: "/Game/Index",
+                            icon: "fa fa-home",
+                            requiresAuthentication: true
+                            )))
                 .AddItem(
                 new MenuItemDefinition(
                     "SystemSetting",

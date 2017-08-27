@@ -1,0 +1,114 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-body">
+    <div class="toolsArea">
+        <button type="button" class="btn btn-info" onclick="reload();"><i class="fa fa-plus"></i> 刷新</button>
+        <button type="button" class="btn btn-primary  btnAdd"><i class="fa fa-plus"></i> 新增</button>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body">
+                    <table class="table table-striped table-bordered table-hover" id="gameTable" width="100%"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var gameTable;
+        $(function () {
+            var gameService = abp.services.app.game;
+            gameTable = $("#gameTable").DataTable({
+                "ajax":
+                {
+                    "url": "@Url.Action("Gets", "Game")",
+                    "data": function (data) {
+                        return JSON.stringify(data);
+                    }
+                },
+                "ordering": false,
+                "columns": [
+                {
+                    className: "text-center",
+                    title:'操作',
+                    data: null,
+                    orderable: false,
+                    render: function (data, type, row, meta) {
+                        var result = "";
+                            result += '<button class="btn btn-default btn-xs  btnEdit" data-id="' + data["Id"] + '" title=" 编辑"><i class="fa fa-edit"></i></button> ';
+                            result += (
+                                '<button class="btn btn-default btn-xs btnDelete"  data-id="' + data["Id"] + '" title="删除"><i class="fa fa-trash-o"></i></button>');
+                        return result;
+                    }
+                },
+                {
+                        className: "text-center",
+                        title: '游戏名称',
+                        data: 'GameName'
+                    },
+                    {
+                        className: "text-center",
+                        title: '创建时间',
+                        data: 'CreationTime',
+                        render: function (data, type, row, meta) {
+                            return new Date(Number(data.toString().replace(/\D/g, ''))).Format("yyyy-MM-dd hh:mm:ss");
+                        }
+                    }
+                ]
+            });
+
+
+            $("#btnSearch").click(function () {
+                gameTable.ajax.reload();
+            });
+
+            $(".btnAdd").click(function () {
+                dialogOpen({
+                    id: "Form",
+                    title: '添加',
+                    url: '@Url.Action("CreateOrUpdate", "Game")',
+                    width: "950px",
+                    height: "600px",
+                    callBack: function (iframeId) {
+                        parent.frames[iframeId].save();
+                    }
+                });
+            });
+
+
+            $("body").on("click",  ".btnEdit", function () {
+                var id = $(this).attr("data-id");
+                dialogOpen({
+                    id: "Form",
+                    title: '编辑',
+                    url: '@Url.Action("CreateOrUpdate", "Game")/' + id,
+                    width: "1100px",
+                    height: "700px",
+                    callBack: function (iframeId) {
+                        frames[iframeId].vue.save();
+                    }
+                });
+            });
+
+            $("body").on("click",
+            ".btnDelete",
+            function () {
+                var id = $(this).attr("data-id");
+                abp.message.confirm("",'确认删除吗?',
+                    function (isConfirmed) {
+                        if (isConfirmed) {
+                            gameService.delete(id).done(function () {
+                                gameTable.ajax.reload();
+                            });
+                        }
+                    }
+                );
+            });
+   
+        });
+    </script>
+}
+
