@@ -58,14 +58,8 @@ namespace EZPost.Web
             var server = HttpContext.Current.Server;
             var appFolders = IocManager.Resolve<AppFolders>();
 
-            appFolders.UploadHawbExcelFolder = server.MapPath("~/Temp/Upload/");
-            appFolders.EventCFileFolder = server.MapPath("~/Temp/EventC/");
-            appFolders.DownLoadFolder = server.MapPath("~/Temp/DownLoad/");
-            appFolders.DhlTrackingFoledr = server.MapPath("~/Temp/DhlTracking/");
-            try { DirectoryHelper.CreateIfNotExists(appFolders.UploadHawbExcelFolder); } catch { }
-            try { DirectoryHelper.CreateIfNotExists(appFolders.EventCFileFolder); } catch { }
-            try { DirectoryHelper.CreateIfNotExists(appFolders.DownLoadFolder); } catch { }
-            try { DirectoryHelper.CreateIfNotExists(appFolders.DhlTrackingFoledr); } catch { }
+            appFolders.Images = server.MapPath("~/Temp/Images/");
+            try { DirectoryHelper.CreateIfNotExists(appFolders.Images); } catch { }
         }
     }
 }

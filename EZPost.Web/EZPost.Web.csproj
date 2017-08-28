@@ -1002,6 +1002,8 @@
     <Content Include="Content\styles\learun-report.css" />
     <Content Include="Content\styles\lenton-ui.css" />
     <Content Include="Content\vue\vue.js" />
+    <Content Include="Content\webuploader\webuploader.css" />
+    <Content Include="Content\webuploader\webuploader.nolog.min.js" />
     <Content Include="css\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -1118,6 +1120,7 @@
     <Compile Include="Common\ExcelHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AudtingLogController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
@@ -1201,6 +1204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\File\" />
     <Folder Include="Views\LevelingGame\" />
   </ItemGroup>
   <PropertyGroup>

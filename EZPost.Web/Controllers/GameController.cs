@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 using EZPost.LevelingGameServices.GameAppService;
 using EZPost.LevelingGameServices.GameAppService.Dto;
 
 namespace EZPost.Web.Controllers
 {
+    [AbpMvcAuthorize]
     public class GameController : EZPostControllerBase
     {
 
