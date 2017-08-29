@@ -15,6 +15,7 @@
             <label class="col-sm-2 control-label">上传图片</label>
             <div class="col-sm-6">
                 <div id="uploader-demo">
+                    <img  id="imgUrl" width="200" />
                     <!--用来存放item-->
                     <div id="fileList" class="uploader-list"></div>
                     <div id="filePicker">选择图片</div>
@@ -45,6 +46,11 @@
                 extensions: 'gif,jpg,jpeg,bmp,png',
                 mimeTypes: 'image/*'
             }
+        });
+
+        uploader.on('uploadSuccess', function (file, response) {
+            console.log(response);
+            $("#imgUrl").attr("src", ".././Temp/Images/"+response.resultdata);
         });
 
     </script>

@@ -24,9 +24,10 @@ namespace EZPost.Web.Controllers
             {
                 return  Error("文件为空");
             }
-            file.SaveAs(_appFolders.Images);
-            var filepath = Path.Combine(_appFolders.Images, file.FileName);
-            return Success("上传成功",filepath);
+            var fileName = Guid.NewGuid() + file.FileName;
+            var filepath = Path.Combine(_appFolders.Images, fileName);
+            file.SaveAs(filepath);
+            return Success("上传成功", fileName);
         }
     }
 }
