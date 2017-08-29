@@ -8,51 +8,57 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">游戏名称</label>
             <div class="col-sm-6">
-                <input class="form-control"  type="text">
+                <input class="form-control"  type="text" v-model="model.gameName">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">上传图片</label>
             <div class="col-sm-6">
                 <div id="uploader-demo">
-                    <img  id="imgUrl" width="200" />
+                    <input type="hidden" id="hdfImageUrl" v-model="model." />
+                    <img id="imgUrl" width="200" v-bind:src="model.PicUrl"/>
                     <!--用来存放item-->
-                    <div id="fileList" class="uploader-list"></div>
                     <div id="filePicker">选择图片</div>
                 </div>
             </div>
         </div>
     </form>
 </div>
+<script src="~/Content/vue/vue.js"></script>
 <script src="~/Content/webuploader/webuploader.nolog.min.js"></script>
+<script src="~/Scripts/UpLoadImgage.js"></script>
 @section scripts{
     <script>
-        // 初始化Web Uploader
-        var uploader = WebUploader.create({
- 
-            // 选完文件后，是否自动上传。
-            auto: true,
- 
-            // 文件接收服务端
-            server: '@Url.Action("UpLoadImage","File")',
- 
-            // 选择文件的按钮。可选。
-            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#filePicker',
- 
-            // 只允许选择图片文件。
-            accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
+        webPicUploader('#filePicker', '#imgUrl');
+        var gameService = abp.services.app.game;
+        var vue = new Vue({
+            el: "#Form",
+            data: {
+                id: '@Model',
+                model:{}
+            },
+            methonds: {
+                init:function() {
+                    var _this = this;
+                    abp.ui.setBusy();
+                    gameService.GetEdit.done(function (result) {
+                        _this.model = result.game;
+                    }).always(function() {
+                        abp.ui.clearBusy();
+                    });
+                },
+                save:function() {
+                    abp.ui.setBusy();
+                    gameService.CreateOrUpdate({
+                        game:this.model
+                    }).done(function() {
+                        abp.message.success("保存成功");
+                    }).always(function () {
+                        abp.ui.clearBusy();
+                    });
+                }
             }
         });
-
-        uploader.on('uploadSuccess', function (file, response) {
-            console.log(response);
-            $("#imgUrl").attr("src", ".././Temp/Images/"+response.resultdata);
-        });
-
     </script>
 }
 

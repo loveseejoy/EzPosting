@@ -1094,6 +1094,7 @@
     <Content Include="Scripts\sweetalert\sweet-alert.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\UpLoadImgage.js" />
     <Content Include="Scripts\_PermissionTree.js" />
     <Content Include="Temp\DownLoad\CLodop_Setup_for_Win32NT.exe" />
     <Content Include="Temp\DownLoad\grbsctl5.exe" />
