@@ -15,8 +15,8 @@
             <label class="col-sm-2 control-label">上传图片</label>
             <div class="col-sm-6">
                 <div id="uploader-demo">
-                    <input type="hidden" id="hdfImageUrl" v-model="model." />
-                    <img id="imgUrl" width="200" v-bind:src="model.PicUrl"/>
+                    <input type="hidden" id="hdfImageUrl" v-model="model.gamePic" />
+                    <img id="imgShow" width="200" v-bind:src="model.gamePic"/>
                     <!--用来存放item-->
                     <div id="filePicker">选择图片</div>
                 </div>
@@ -29,7 +29,6 @@
 <script src="~/Scripts/UpLoadImgage.js"></script>
 @section scripts{
     <script>
-        webPicUploader('#filePicker', '#imgUrl');
         var gameService = abp.services.app.game;
         var vue = new Vue({
             el: "#Form",
@@ -37,11 +36,13 @@
                 id: '@Model',
                 model:{}
             },
-            methonds: {
-                init:function() {
+            methods: {
+                init: function () {
+                    webPicUploader('#filePicker', '#imgShow', '#hdfImageUrl');
                     var _this = this;
                     abp.ui.setBusy();
-                    gameService.GetEdit.done(function (result) {
+                    gameService.getEdit(_this.id).done(function (result) {
+                        console.log(result);
                         _this.model = result.game;
                     }).always(function() {
                         abp.ui.clearBusy();
@@ -49,7 +50,7 @@
                 },
                 save:function() {
                     abp.ui.setBusy();
-                    gameService.CreateOrUpdate({
+                    gameService.createOrUpdate({
                         game:this.model
                     }).done(function() {
                         abp.message.success("保存成功");
@@ -59,6 +60,7 @@
                 }
             }
         });
+        vue.init();
     </script>
 }
 
