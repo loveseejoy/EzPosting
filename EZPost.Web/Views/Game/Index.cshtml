@@ -48,14 +48,6 @@
                         className: "text-center",
                         title: '游戏名称',
                         data: 'GameName'
-                    },
-                    {
-                        className: "text-center",
-                        title: '创建时间',
-                        data: 'CreationTime',
-                        render: function (data, type, row, meta) {
-                            return new Date(Number(data.toString().replace(/\D/g, ''))).Format("yyyy-MM-dd hh:mm:ss");
-                        }
                     }
                 ]
             });

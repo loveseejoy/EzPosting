@@ -31,7 +31,10 @@ namespace EZPost.LevelingGameServices.GameAppService
         {
             if (!id.HasValue)
             {
-                return new GetGameForEditOutput();
+                return new GetGameForEditOutput
+                {
+                    Game = new GameEditDto()
+                };
             }
             else
             {

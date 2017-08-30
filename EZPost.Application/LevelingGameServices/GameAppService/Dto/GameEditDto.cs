@@ -16,5 +16,7 @@ namespace EZPost.LevelingGameServices.GameAppService.Dto
         public string GameDesc { set; get; }
 
         public string GamePic { set; get; }
+
+
     }
 }
