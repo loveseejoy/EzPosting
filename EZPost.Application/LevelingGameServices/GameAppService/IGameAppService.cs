@@ -9,6 +9,6 @@ namespace EZPost.LevelingGameServices.GameAppService
         IPagedList<GameListDto> Gets(GetGamesInput input);
        GetGameForEditOutput GetEdit(int? id);
        void CreateOrUpdate(CreateOrUpdateGameInput input);
-        void DeleteRole(int id);
+        void Delete(int id);
     }
 }

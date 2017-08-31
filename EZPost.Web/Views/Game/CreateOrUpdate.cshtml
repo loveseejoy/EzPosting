@@ -52,8 +52,9 @@
                     abp.ui.setBusy();
                     gameService.createOrUpdate({
                         game:this.model
-                    }).done(function() {
+                    }).done(function () {
                         abp.message.success("保存成功");
+                        dialogClose();
                     }).always(function () {
                         abp.ui.clearBusy();
                     });

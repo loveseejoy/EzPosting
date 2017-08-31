@@ -62,7 +62,7 @@ namespace EZPost.LevelingGameServices.GameAppService
             }
         }
 
-        public void DeleteRole(int id)
+        public void Delete(int id)
         {
            _gameRepository.Delete(id);
         }
