@@ -21,8 +21,7 @@
     });
 
     uploader.on('uploadSuccess', function (file, response) {
-        console.log(response);
-        $(imgShowId).attr("src", ".././Temp/Images/" + response.resultdata);
+        $(imgShowId).attr("src", response.resultdata);
         $(hdfImageUrl).val(response.resultdata);
     });
 

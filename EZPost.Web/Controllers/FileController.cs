@@ -27,7 +27,8 @@ namespace EZPost.Web.Controllers
             var fileName = $"{Guid.NewGuid()}_{file.FileName}";
             var filepath = Path.Combine(_appFolders.Images, fileName);
             file.SaveAs(filepath);
-            return Success("上传成功", fileName);
+            var retrunFilePath = Path.Combine(_appFolders.ReturnImages, fileName);
+            return Success("上传成功", retrunFilePath);
         }
     }
 }

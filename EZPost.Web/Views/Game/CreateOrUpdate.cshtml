@@ -15,8 +15,9 @@
             <label class="col-sm-2 control-label">上传图片</label>
             <div class="col-sm-6">
                 <div id="uploader-demo">
-                    <input type="hidden" id="hdfImageUrl" v-model="model.gamePic" />
-                    <img id="imgShow" width="200" v-bind:src="model.gamePic"/>
+                    <input type="hidden" id="hdfImageUrl" />
+                    <img id="imgShow" v-if="model.gamePic!=null"  width="200" v-bind:src="model.gamePic"/>
+                    <img id="imgShow" v-else  width="200" />
                     <!--用来存放item-->
                     <div id="filePicker">选择图片</div>
                 </div>
@@ -42,18 +43,21 @@
                     var _this = this;
                     abp.ui.setBusy();
                     gameService.getEdit(_this.id).done(function (result) {
-                        console.log(result);
+                        console.log(result.game);
                         _this.model = result.game;
+                        //$("#hdfImageUrl").val(result.game.gamePic);
                     }).always(function() {
                         abp.ui.clearBusy();
                     });
                 },
                 save:function() {
                     abp.ui.setBusy();
+                    this.model.gamePic = $("#hdfImageUrl").val();
                     gameService.createOrUpdate({
                         game:this.model
                     }).done(function () {
                         abp.message.success("保存成功");
+                        $.currentIframe().$("#gameTable").DataTable().ajax.reload();
                         dialogClose();
                     }).always(function () {
                         abp.ui.clearBusy();

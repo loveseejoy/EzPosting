@@ -35,7 +35,13 @@ namespace EZPost.Web
                             url: "/Game/Index",
                             icon: "fa fa-home",
                             requiresAuthentication: true
-                            )))
+                            )).AddItem(new MenuItemDefinition(
+                            "Game",
+                            L("代练产品"),
+                            url: "/Product/Index",
+                            icon: "fa fa-home",
+                            requiresAuthentication: true
+                        )))
                 .AddItem(
                 new MenuItemDefinition(
                     "SystemSetting",

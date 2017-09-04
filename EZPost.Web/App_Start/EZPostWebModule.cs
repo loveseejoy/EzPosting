@@ -59,6 +59,7 @@ namespace EZPost.Web
             var appFolders = IocManager.Resolve<AppFolders>();
 
             appFolders.Images = server.MapPath("~/Temp/Images/");
+            appFolders.ReturnImages = "/Temp/Images/";
             try { DirectoryHelper.CreateIfNotExists(appFolders.Images); } catch { }
         }
     }
